@@ -1,226 +1,5 @@
-import { a as afterUpdate, t as text_decoder, b as base64_decode, d as decode_pathname, c as decode_params, n as normalize_path, e as disable_search, w as with_request_store, v as validate_layout_server_exports, f as validate_layout_exports, g as validate_page_server_exports, h as validate_page_exports, i as text_encoder$1, r as resolve, j as file_transport, m as make_trackable, k as get_relative_path, l as base64_encode } from './chunks/ssr2-BSmWmkq6.js';
+import { t as text_decoder, b as base64_decode, a as afterUpdate, d as decode_pathname, c as decode_params, n as normalize_path, e as disable_search, w as with_request_store, v as validate_layout_server_exports, f as validate_layout_exports, g as validate_page_server_exports, h as validate_page_exports, i as text_encoder$1, r as resolve, j as file_transport, m as make_trackable, k as get_relative_path, l as base64_encode } from './chunks/ssr2-BvzklFo2.js';
 import { c as create_ssr_component, s as setContext, v as validate_component, m as missing_component, n as noop, a as safe_not_equal } from './chunks/ssr-BpgrJ2Sn.js';
-
-class HttpError {
-	/**
-	 * @param {number} status
-	 * @param {{message: string} extends App.Error ? (App.Error | string | undefined) : App.Error} body
-	 */
-	constructor(status, body) {
-		this.status = status;
-		if (typeof body === 'string') {
-			this.body = { message: body };
-		} else if (body) {
-			this.body = body;
-		} else {
-			this.body = { message: `Error: ${status}` };
-		}
-	}
-
-	toString() {
-		return JSON.stringify(this.body);
-	}
-}
-
-class Redirect {
-	/**
-	 * @param {300 | 301 | 302 | 303 | 304 | 305 | 306 | 307 | 308} status
-	 * @param {string} location
-	 */
-	constructor(status, location) {
-		this.status = status;
-		this.location = location;
-	}
-}
-
-/**
- * An error that was thrown from within the SvelteKit runtime that is not fatal and doesn't result in a 500, such as a 404.
- * `SvelteKitError` goes through `handleError`.
- * @extends Error
- */
-class SvelteKitError extends Error {
-	/**
-	 * @param {number} status
-	 * @param {string} text
-	 * @param {string} message
-	 */
-	constructor(status, text, message) {
-		super(message);
-		this.status = status;
-		this.text = text;
-	}
-}
-
-/**
- * @template [T=undefined]
- */
-class ActionFailure {
-	/**
-	 * @param {number} status
-	 * @param {T} data
-	 */
-	constructor(status, data) {
-		this.status = status;
-		this.data = data;
-	}
-}
-
-var BROWSER$1 = typeof window !== 'undefined';
-
-const node_env = globalThis.process?.env?.NODE_ENV;
-var DEV = node_env && !node_env.toLowerCase().startsWith('prod');
-
-/** @import { RemoteFormIssue } from '@sveltejs/kit' */
-/** @import { StandardSchemaV1 } from '@standard-schema/spec' */
-
-const text_encoder = new TextEncoder();
-new TextDecoder();
-
-// TODO 3.0: remove these types as they are not used anymore (we can't remove them yet because that would be a breaking change)
-/**
- * @template {number} TNumber
- * @template {any[]} [TArray=[]]
- * @typedef {TNumber extends TArray['length'] ? TArray[number] : LessThan<TNumber, [...TArray, TArray['length']]>} LessThan
- */
-
-/**
- * @template {number} TStart
- * @template {number} TEnd
- * @typedef {Exclude<TEnd | LessThan<TEnd>, LessThan<TStart>>} NumericRange
- */
-
-// Keep the status codes as `number` because restricting to certain numbers makes it unnecessarily hard to use compared to the benefits
-// (we have runtime errors already to check for invalid codes). Also see https://github.com/sveltejs/kit/issues/11780
-
-// we have to repeat the JSDoc because the display for function overloads is broken
-// see https://github.com/microsoft/TypeScript/issues/55056
-
-/**
- * Throws an error with a HTTP status code and an optional message.
- * When called during request handling, this will cause SvelteKit to
- * return an error response without invoking `handleError`.
- * Make sure you're not catching the thrown error, which would prevent SvelteKit from handling it.
- * @param {number} status The [HTTP status code](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#client_error_responses). Must be in the range 400-599.
- * @param {App.Error} body An object that conforms to the App.Error type. If a string is passed, it will be used as the message property.
- * @overload
- * @param {number} status
- * @param {App.Error} body
- * @return {never}
- * @throws {HttpError} This error instructs SvelteKit to initiate HTTP error handling.
- * @throws {Error} If the provided status is invalid (not between 400 and 599).
- */
-/**
- * Throws an error with a HTTP status code and an optional message.
- * When called during request handling, this will cause SvelteKit to
- * return an error response without invoking `handleError`.
- * Make sure you're not catching the thrown error, which would prevent SvelteKit from handling it.
- * @param {number} status The [HTTP status code](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#client_error_responses). Must be in the range 400-599.
- * @param {{ message: string } extends App.Error ? App.Error | string | undefined : never} [body] An object that conforms to the App.Error type. If a string is passed, it will be used as the message property.
- * @overload
- * @param {number} status
- * @param {{ message: string } extends App.Error ? App.Error | string | undefined : never} [body]
- * @return {never}
- * @throws {HttpError} This error instructs SvelteKit to initiate HTTP error handling.
- * @throws {Error} If the provided status is invalid (not between 400 and 599).
- */
-/**
- * Throws an error with a HTTP status code and an optional message.
- * When called during request handling, this will cause SvelteKit to
- * return an error response without invoking `handleError`.
- * Make sure you're not catching the thrown error, which would prevent SvelteKit from handling it.
- * @param {number} status The [HTTP status code](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#client_error_responses). Must be in the range 400-599.
- * @param {{ message: string } extends App.Error ? App.Error | string | undefined : never} body An object that conforms to the App.Error type. If a string is passed, it will be used as the message property.
- * @return {never}
- * @throws {HttpError} This error instructs SvelteKit to initiate HTTP error handling.
- * @throws {Error} If the provided status is invalid (not between 400 and 599).
- */
-function error(status, body) {
-	if ((!BROWSER$1 || DEV) && (isNaN(status) || status < 400 || status > 599)) {
-		throw new Error(`HTTP error status codes must be between 400 and 599 — ${status} is invalid`);
-	}
-
-	throw new HttpError(status, body);
-}
-
-/**
- * Create a JSON `Response` object from the supplied data.
- * @param {any} data The value that will be serialized as JSON.
- * @param {ResponseInit} [init] Options such as `status` and `headers` that will be added to the response. `Content-Type: application/json` and `Content-Length` headers will be added automatically.
- */
-function json(data, init) {
-	// TODO deprecate this in favour of `Response.json` when it's
-	// more widely supported
-	const body = JSON.stringify(data);
-
-	// we can't just do `text(JSON.stringify(data), init)` because
-	// it will set a default `content-type` header. duplicated code
-	// means less duplicated work
-	const headers = new Headers(init?.headers);
-	if (!headers.has('content-length')) {
-		headers.set('content-length', text_encoder.encode(body).byteLength.toString());
-	}
-
-	if (!headers.has('content-type')) {
-		headers.set('content-type', 'application/json');
-	}
-
-	return new Response(body, {
-		...init,
-		headers
-	});
-}
-
-/**
- * Create a `Response` object from the supplied body.
- * @param {string} body The value that will be used as-is.
- * @param {ResponseInit} [init] Options such as `status` and `headers` that will be added to the response. A `Content-Length` header will be added automatically.
- */
-function text(body, init) {
-	const headers = new Headers(init?.headers);
-	if (!headers.has('content-length')) {
-		const encoded = text_encoder.encode(body);
-		headers.set('content-length', encoded.byteLength.toString());
-		return new Response(encoded, {
-			...init,
-			headers
-		});
-	}
-
-	return new Response(body, {
-		...init,
-		headers
-	});
-}
-
-/**
- * @template {{ tracing: { enabled: boolean, root: import('@opentelemetry/api').Span, current: import('@opentelemetry/api').Span } }} T
- * @param {T} event_like
- * @param {import('@opentelemetry/api').Span} current
- * @returns {T}
- */
-function merge_tracing(event_like, current) {
-	return {
-		...event_like,
-		tracing: {
-			...event_like.tracing,
-			current
-		}
-	};
-}
-
-let base = "";
-let assets = base;
-const app_dir = "_app";
-const relative = true;
-const initial = { base, assets };
-function override(paths) {
-  base = paths.base;
-  assets = paths.assets;
-}
-function reset() {
-  base = initial.base;
-  assets = initial.assets;
-}
 
 /** @type {Record<string, string>} */
 const escaped = {
@@ -1276,6 +1055,244 @@ function stringify_primitive(thing) {
 	return String(thing);
 }
 
+const BROWSER$1 = false;
+const INVALIDATED_PARAM = "x-sveltekit-invalidated";
+const TRAILING_SLASH_PARAM = "x-sveltekit-trailing-slash";
+function stringify(data, transport) {
+  const encoders = Object.fromEntries(Object.entries(transport).map(([k, v]) => [k, v.encode]));
+  return stringify$1(data, encoders);
+}
+function parse_remote_arg(string, transport) {
+  if (!string) return void 0;
+  const json_string = text_decoder.decode(
+    // no need to add back `=` characters, atob can handle it
+    base64_decode(string.replaceAll("-", "+").replaceAll("_", "/"))
+  );
+  const decoders = Object.fromEntries(Object.entries(transport).map(([k, v]) => [k, v.decode]));
+  return parse(json_string, decoders);
+}
+
+class HttpError {
+	/**
+	 * @param {number} status
+	 * @param {{message: string} extends App.Error ? (App.Error | string | undefined) : App.Error} body
+	 */
+	constructor(status, body) {
+		this.status = status;
+		if (typeof body === 'string') {
+			this.body = { message: body };
+		} else if (body) {
+			this.body = body;
+		} else {
+			this.body = { message: `Error: ${status}` };
+		}
+	}
+
+	toString() {
+		return JSON.stringify(this.body);
+	}
+}
+
+class Redirect {
+	/**
+	 * @param {300 | 301 | 302 | 303 | 304 | 305 | 306 | 307 | 308} status
+	 * @param {string} location
+	 */
+	constructor(status, location) {
+		this.status = status;
+		this.location = location;
+	}
+}
+
+/**
+ * An error that was thrown from within the SvelteKit runtime that is not fatal and doesn't result in a 500, such as a 404.
+ * `SvelteKitError` goes through `handleError`.
+ * @extends Error
+ */
+class SvelteKitError extends Error {
+	/**
+	 * @param {number} status
+	 * @param {string} text
+	 * @param {string} message
+	 */
+	constructor(status, text, message) {
+		super(message);
+		this.status = status;
+		this.text = text;
+	}
+}
+
+/**
+ * @template [T=undefined]
+ */
+class ActionFailure {
+	/**
+	 * @param {number} status
+	 * @param {T} data
+	 */
+	constructor(status, data) {
+		this.status = status;
+		this.data = data;
+	}
+}
+
+var BROWSER = typeof window !== 'undefined';
+
+const node_env = globalThis.process?.env?.NODE_ENV;
+var DEV = node_env && !node_env.toLowerCase().startsWith('prod');
+
+/** @import { RemoteFormIssue } from '@sveltejs/kit' */
+/** @import { StandardSchemaV1 } from '@standard-schema/spec' */
+
+const text_encoder = new TextEncoder();
+new TextDecoder();
+
+// TODO 3.0: remove these types as they are not used anymore (we can't remove them yet because that would be a breaking change)
+/**
+ * @template {number} TNumber
+ * @template {any[]} [TArray=[]]
+ * @typedef {TNumber extends TArray['length'] ? TArray[number] : LessThan<TNumber, [...TArray, TArray['length']]>} LessThan
+ */
+
+/**
+ * @template {number} TStart
+ * @template {number} TEnd
+ * @typedef {Exclude<TEnd | LessThan<TEnd>, LessThan<TStart>>} NumericRange
+ */
+
+// Keep the status codes as `number` because restricting to certain numbers makes it unnecessarily hard to use compared to the benefits
+// (we have runtime errors already to check for invalid codes). Also see https://github.com/sveltejs/kit/issues/11780
+
+// we have to repeat the JSDoc because the display for function overloads is broken
+// see https://github.com/microsoft/TypeScript/issues/55056
+
+/**
+ * Throws an error with a HTTP status code and an optional message.
+ * When called during request handling, this will cause SvelteKit to
+ * return an error response without invoking `handleError`.
+ * Make sure you're not catching the thrown error, which would prevent SvelteKit from handling it.
+ * @param {number} status The [HTTP status code](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#client_error_responses). Must be in the range 400-599.
+ * @param {App.Error} body An object that conforms to the App.Error type. If a string is passed, it will be used as the message property.
+ * @overload
+ * @param {number} status
+ * @param {App.Error} body
+ * @return {never}
+ * @throws {HttpError} This error instructs SvelteKit to initiate HTTP error handling.
+ * @throws {Error} If the provided status is invalid (not between 400 and 599).
+ */
+/**
+ * Throws an error with a HTTP status code and an optional message.
+ * When called during request handling, this will cause SvelteKit to
+ * return an error response without invoking `handleError`.
+ * Make sure you're not catching the thrown error, which would prevent SvelteKit from handling it.
+ * @param {number} status The [HTTP status code](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#client_error_responses). Must be in the range 400-599.
+ * @param {{ message: string } extends App.Error ? App.Error | string | undefined : never} [body] An object that conforms to the App.Error type. If a string is passed, it will be used as the message property.
+ * @overload
+ * @param {number} status
+ * @param {{ message: string } extends App.Error ? App.Error | string | undefined : never} [body]
+ * @return {never}
+ * @throws {HttpError} This error instructs SvelteKit to initiate HTTP error handling.
+ * @throws {Error} If the provided status is invalid (not between 400 and 599).
+ */
+/**
+ * Throws an error with a HTTP status code and an optional message.
+ * When called during request handling, this will cause SvelteKit to
+ * return an error response without invoking `handleError`.
+ * Make sure you're not catching the thrown error, which would prevent SvelteKit from handling it.
+ * @param {number} status The [HTTP status code](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#client_error_responses). Must be in the range 400-599.
+ * @param {{ message: string } extends App.Error ? App.Error | string | undefined : never} body An object that conforms to the App.Error type. If a string is passed, it will be used as the message property.
+ * @return {never}
+ * @throws {HttpError} This error instructs SvelteKit to initiate HTTP error handling.
+ * @throws {Error} If the provided status is invalid (not between 400 and 599).
+ */
+function error(status, body) {
+	if ((!BROWSER || DEV) && (isNaN(status) || status < 400 || status > 599)) {
+		throw new Error(`HTTP error status codes must be between 400 and 599 — ${status} is invalid`);
+	}
+
+	throw new HttpError(status, body);
+}
+
+/**
+ * Create a JSON `Response` object from the supplied data.
+ * @param {any} data The value that will be serialized as JSON.
+ * @param {ResponseInit} [init] Options such as `status` and `headers` that will be added to the response. `Content-Type: application/json` and `Content-Length` headers will be added automatically.
+ */
+function json(data, init) {
+	// TODO deprecate this in favour of `Response.json` when it's
+	// more widely supported
+	const body = JSON.stringify(data);
+
+	// we can't just do `text(JSON.stringify(data), init)` because
+	// it will set a default `content-type` header. duplicated code
+	// means less duplicated work
+	const headers = new Headers(init?.headers);
+	if (!headers.has('content-length')) {
+		headers.set('content-length', text_encoder.encode(body).byteLength.toString());
+	}
+
+	if (!headers.has('content-type')) {
+		headers.set('content-type', 'application/json');
+	}
+
+	return new Response(body, {
+		...init,
+		headers
+	});
+}
+
+/**
+ * Create a `Response` object from the supplied body.
+ * @param {string} body The value that will be used as-is.
+ * @param {ResponseInit} [init] Options such as `status` and `headers` that will be added to the response. A `Content-Length` header will be added automatically.
+ */
+function text(body, init) {
+	const headers = new Headers(init?.headers);
+	if (!headers.has('content-length')) {
+		const encoded = text_encoder.encode(body);
+		headers.set('content-length', encoded.byteLength.toString());
+		return new Response(encoded, {
+			...init,
+			headers
+		});
+	}
+
+	return new Response(body, {
+		...init,
+		headers
+	});
+}
+
+/**
+ * @template {{ tracing: { enabled: boolean, root: import('@opentelemetry/api').Span, current: import('@opentelemetry/api').Span } }} T
+ * @param {T} event_like
+ * @param {import('@opentelemetry/api').Span} current
+ * @returns {T}
+ */
+function merge_tracing(event_like, current) {
+	return {
+		...event_like,
+		tracing: {
+			...event_like.tracing,
+			current
+		}
+	};
+}
+
+let base = "";
+let assets = base;
+const app_dir = "_app";
+const relative = true;
+const initial = { base, assets };
+function override(paths) {
+  base = paths.base;
+  assets = paths.assets;
+}
+function reset() {
+  base = initial.base;
+  assets = initial.assets;
+}
+
 let public_env = {};
 function set_private_env(environment) {
 }
@@ -1383,7 +1400,7 @@ const options = {
   service_worker: false,
   service_worker_options: void 0,
   templates: {
-    app: ({ head, body, assets, nonce, env }) => '<!DOCTYPE html>\r\n<html lang="en">\r\n  <head>\r\n    <meta charset="utf-8" />\r\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\r\n    <link rel="icon" type="image/x-icon" href="' + assets + '/favicon.ico" />\r\n    ' + head + '\r\n  </head>\r\n  <body data-sveltekit-preload-data="hover">\r\n    <div style="display: contents">' + body + "</div>\r\n  </body>\r\n</html>",
+    app: ({ head, body, assets, nonce, env }) => '<!DOCTYPE html>\r\n<html lang="en">\r\n  <head>\r\n    <meta charset="utf-8" />\r\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\r\n    <link rel="icon" type="image/png" href="' + assets + '/favicon.png" />\r\n    ' + head + '\r\n  </head>\r\n  <body data-sveltekit-preload-data="hover">\r\n    <div style="display: contents">' + body + "</div>\r\n  </body>\r\n</html>",
     error: ({ status, message }) => '<!doctype html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<title>' + message + `</title>
 
 		<style>
@@ -1455,7 +1472,7 @@ const options = {
 		<div class="error">
 			<span class="status">` + status + '</span>\n			<div class="message">\n				<h1>' + message + "</h1>\n			</div>\n		</div>\n	</body>\n</html>\n"
   },
-  version_hash: "ghwk3g"
+  version_hash: "1sobph9"
 };
 async function get_hooks() {
   let handle;
@@ -1474,22 +1491,6 @@ async function get_hooks() {
     reroute,
     transport
   };
-}
-
-const INVALIDATED_PARAM = "x-sveltekit-invalidated";
-const TRAILING_SLASH_PARAM = "x-sveltekit-trailing-slash";
-function stringify(data, transport) {
-  const encoders = Object.fromEntries(Object.entries(transport).map(([k, v]) => [k, v.encode]));
-  return stringify$1(data, encoders);
-}
-function parse_remote_arg(string, transport) {
-  if (!string) return void 0;
-  const json_string = text_decoder.decode(
-    // no need to add back `=` characters, atob can handle it
-    base64_decode(string.replaceAll("-", "+").replaceAll("_", "/"))
-  );
-  const decoders = Object.fromEntries(Object.entries(transport).map(([k, v]) => [k, v.decode]));
-  return parse(json_string, decoders);
 }
 
 var cookie = {};
@@ -2012,7 +2013,6 @@ function requireSetCookie () {
 
 var setCookieExports = requireSetCookie();
 
-const BROWSER = false;
 const SVELTE_KIT_ASSETS = "/_svelte_kit_assets";
 const ENDPOINT_METHODS = ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS", "HEAD"];
 const PAGE_METHODS = ["GET", "POST", "HEAD"];
@@ -2404,7 +2404,7 @@ async function handle_action_json_request(event, event_state, options2, server) 
   check_named_default_separate(actions);
   try {
     const data = await call_action(event, event_state, actions);
-    if (BROWSER) ;
+    if (BROWSER$1) ;
     if (data instanceof ActionFailure) {
       return action_json({
         type: "failure",
@@ -2489,7 +2489,7 @@ async function handle_action_request(event, event_state, server) {
   check_named_default_separate(actions);
   try {
     const data = await call_action(event, event_state, actions);
-    if (BROWSER) ;
+    if (BROWSER$1) ;
     if (data instanceof ActionFailure) {
       return {
         type: "failure",
@@ -3794,7 +3794,7 @@ async function render_response({
       ])
     };
     try {
-      if (BROWSER) ;
+      if (BROWSER$1) ;
       rendered = await with_request_store({ event, state: event_state }, async () => {
         if (relative) override({ base: base$1, assets: assets$1 });
         const maybe_promise = options2.root.render(props, render_opts);
@@ -4603,7 +4603,7 @@ async function render_page(event, event_state, page, options2, manifest, state, 
     const ssr = nodes.ssr();
     const csr = nodes.csr();
     if (ssr === false && !(state.prerendering && should_prerender_data)) {
-      if (BROWSER && action_result && !event.request.headers.has("x-sveltekit-action")) ;
+      if (BROWSER$1 && action_result && !event.request.headers.has("x-sveltekit-action")) ;
       return await render_response({
         branch: [],
         fetched,
@@ -5446,12 +5446,12 @@ async function internal_respond(request, options2, manifest, state) {
       if (url.pathname === base || url.pathname === base + "/") {
         trailing_slash = "always";
       } else if (page_nodes) {
-        if (BROWSER) ;
+        if (BROWSER$1) ;
         trailing_slash = page_nodes.trailing_slash();
       } else if (route.endpoint) {
         const node = await route.endpoint();
         trailing_slash = node.trailingSlash ?? "never";
-        if (BROWSER) ;
+        if (BROWSER$1) ;
       }
       if (!is_data_request) {
         const normalized = normalize_path(url.pathname, trailing_slash);
@@ -5711,7 +5711,7 @@ async function internal_respond(request, options2, manifest, state) {
         });
       }
       if (state.depth === 0) {
-        if (BROWSER && event2.url.pathname === "/.well-known/appspecific/com.chrome.devtools.json") ;
+        if (BROWSER$1 && event2.url.pathname === "/.well-known/appspecific/com.chrome.devtools.json") ;
         return await respond_with_error({
           event: event2,
           event_state,

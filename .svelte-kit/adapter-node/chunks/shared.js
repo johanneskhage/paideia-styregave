@@ -1,5 +1,6 @@
 import * as devalue from "devalue";
 import { b as base64_encode, t as text_decoder, e as base64_decode } from "./utils.js";
+const BROWSER = false;
 const INVALIDATED_PARAM = "x-sveltekit-invalidated";
 const TRAILING_SLASH_PARAM = "x-sveltekit-trailing-slash";
 function stringify(data, transport) {
@@ -25,6 +26,7 @@ function create_remote_cache_key(id, payload) {
   return id + "/" + payload;
 }
 export {
+  BROWSER as B,
   INVALIDATED_PARAM as I,
   TRAILING_SLASH_PARAM as T,
   stringify_remote_arg as a,
