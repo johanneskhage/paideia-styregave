@@ -1,3 +1,4 @@
+<!-- Header.svelte -->
 <script lang="ts">
   let open = false;
 
@@ -28,7 +29,12 @@
     <span class="bar" aria-hidden="true"></span>
   </button>
 
-  <nav id="main-nav" class="nav-links {open ? 'open' : ''}" role="navigation" on:click={close}>
+  <nav
+    id="main-nav"
+    class={`nav-links ${open ? 'open' : ''}`}
+    role="navigation"
+    on:click={close}
+  >
     <a class="nav-link" href="/">Home</a>
     <a class="nav-link" href="/om-oss">Om oss</a>
     <a class="nav-link" href="/ny-student">Ny student</a>
@@ -43,15 +49,24 @@
     justify-content: space-between;
     align-items: center;
     padding: 0;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     background-color: #141048;
     position: relative;
     height: 50px;
   }
 
-  .logo { display: flex; align-items: center; height: 100%; }
+  .logo {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
 
-  .logo img { height: 48px; padding-left: 0.5rem; width: auto; display: block; }
+  .logo img {
+    height: 48px;
+    padding-left: 0.5rem;
+    width: auto;
+    display: block;
+  }
 
   .nav-links {
     display: flex;
@@ -72,7 +87,9 @@
   }
 
   .nav-link:hover,
-  .nav-link:focus { color: #ffffff; }
+  .nav-link:focus {
+    color: #ffffff;
+  }
 
   /* hamburger hidden by default on wide screens */
   .hamburger {
@@ -85,6 +102,7 @@
     height: 100%;
     align-items: center;
     justify-content: center;
+    z-index: 60; /* keep button above dropdown */
   }
 
   .hamburger .bar {
@@ -96,9 +114,10 @@
   }
 
   @media (max-width: 720px) {
-    .nav-links { display: none; }
+    .nav-links {
+      display: none; /* hidden until .open is set */
+    }
 
-    /* show hamburger on small screens and stack the bars vertically */
     .hamburger {
       display: flex;
       flex-direction: column;
@@ -108,23 +127,29 @@
     .nav-links.open {
       display: flex;
       flex-direction: column;
-      gap: 0;
       position: absolute;
-      right: 0;
-      top: 100%;
-      background: #141048;
-      width: 200px;
-      border: 1px solid rgba(255,255,255,0.04);
-      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+      inset: 100% 0 auto 0;        /* top: 100%; left: 0; right: 0 */
+      background-color: #141048;   /* ensures painted background */
+      width: 100%;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
       padding: 0.5rem 0;
       z-index: 50;
     }
 
     .nav-links.open .nav-link {
       padding: 0.75rem 1rem;
-      border-bottom: 1px solid rgba(255,255,255,0.03);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
       height: auto;
       align-items: flex-start;
+      width: 100%;
+      box-sizing: border-box;
+      background: transparent;
+      display: flex;
+    }
+
+    .nav-links.open .nav-link:last-child {
+      border-bottom: none;
     }
   }
 </style>

@@ -19,14 +19,14 @@
   .upcoming-event {
     max-width: 800px;
     margin: 2rem auto;
-    padding: 1rem 1rem;
-    padding-top: 1px;
+    padding: 0 1.5rem 2rem 1.5rem; /* Remove top padding */
     background: #fff;
     border-radius: 10px;
     box-shadow: 0 2px 12px rgba(20,16,72,0.08);
   }
 
   .section-title {
+    padding-top: 1rem;           /* Remove top margin */
     margin-bottom: 2rem;
     font-size: 2rem;
     color: #141048;
