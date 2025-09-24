@@ -1,6 +1,6 @@
 <script lang="ts">
   import { browser } from '$app/environment';
-  import GooglePage from '$lib/molecules/GooglePage.svelte';
+  import HomePage from '$lib/molecules/HomePage.svelte';
   import VideoPlayer from '$lib/molecules/VideoPlayer.svelte';
 
   // favicon is served from static/favicon.ico via app.html template
@@ -36,7 +36,7 @@
 </svelte:head>
 
 {#if !showVideo}
-  <GooglePage on:interact={handleInteraction} />
+  <HomePage on:interact={handleInteraction} />
 {/if}
 
 <VideoPlayer {showVideo} />
