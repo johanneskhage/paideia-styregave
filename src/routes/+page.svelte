@@ -2,27 +2,36 @@
   import { browser } from '$app/environment';
   import HomePage from '$lib/molecules/HomePage.svelte';
   import VideoPlayer from '$lib/molecules/VideoPlayer.svelte';
+  import ImageOverlay from '$lib/molecules/ImageOverlay.svelte';
 
   // favicon is served from static/favicon.ico via app.html template
 
   // State
   let showVideo = false;
-  
+  let overlayImg: string | null = null;
+
   // Effects
   if (browser) {
     import('video.js/dist/video-js.min.css');
   }
-  
+
   // Event handlers
   function handleInteraction() {
     if (!browser) return;
-    
+
     // do not change favicon at runtime — keep static favicon.ico
     // document.getElementById('pageFavicon').href = '/cerveza-cristal.png';
     document.title = 'Cerveza Cristalllll';
-    
+
     // Show video immediately
     showVideo = true;
+  }
+
+  function openOverlay(img: string) {
+    overlayImg = img;
+  }
+  function closeOverlay() {
+    overlayImg = null;
   }
 </script>
 
@@ -36,10 +45,11 @@
 </svelte:head>
 
 {#if !showVideo}
-  <HomePage on:interact={handleInteraction} />
+  <HomePage on:interact={handleInteraction} {openOverlay} />
 {/if}
 
 <VideoPlayer {showVideo} />
+<ImageOverlay imgSrc={overlayImg} visible={!!overlayImg} on:close={closeOverlay} />
 
 <style>
   /* ... existing styles ... */

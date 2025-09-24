@@ -1,13 +1,10 @@
 <!-- Header.svelte -->
 <script lang="ts">
+  export let openOverlay: (img: string) => void;
   let open = false;
 
-  function toggle() {
-    open = !open;
-  }
-  function close() {
-    open = false;
-  }
+  function toggle() { open = !open; }
+  function close() { open = false; }
 
   // Close when clicking outside the menu
   function clickOutside(node: HTMLElement) {
@@ -30,11 +27,11 @@
 
   <!-- Desktop nav -->
   <nav class="nav-desktop" role="navigation" aria-label="Primary">
-    <a class="nav-link" href="/">Home</a>
-    <a class="nav-link" href="/om-oss">Om oss</a>
-    <a class="nav-link" href="/ny-student">Ny student</a>
-    <a class="nav-link" href="/arrangementer">Arrangementer</a>
-    <a class="nav-link" href="/paideia-fc">Paideia FC</a>
+    <a class="nav-link" href="#" on:click|preventDefault={() => openOverlay('/meme1.png')}>Home</a>
+    <a class="nav-link" href="#" on:click|preventDefault={() => openOverlay('/meme2.png')}>Om oss</a>
+    <a class="nav-link" href="#" on:click|preventDefault={() => openOverlay('/meme3.png')}>Ny student</a>
+    <a class="nav-link" href="#" on:click|preventDefault={() => openOverlay('/meme4.png')}>Arrangementer</a>
+    <a class="nav-link" href="#" on:click|preventDefault={() => openOverlay('/meme5.png')}>Paideia FC</a>
   </nav>
 
   <!-- Mobile hamburger + popover -->
@@ -60,11 +57,11 @@
         class="menu-panel"
         on:click={close}
       >
-        <a class="menu-item" role="menuitem" href="/">Home</a>
-        <a class="menu-item" role="menuitem" href="/om-oss">Om oss</a>
-        <a class="menu-item" role="menuitem" href="/ny-student">Ny student</a>
-        <a class="menu-item" role="menuitem" href="/arrangementer">Arrangementer</a>
-        <a class="menu-item" role="menuitem" href="/paideia-fc">Paideia FC</a>
+        <a class="menu-item" role="menuitem" href="#" on:click|preventDefault={() => openOverlay('/meme1.png')}>Home</a>
+        <a class="menu-item" role="menuitem" href="#" on:click|preventDefault={() => openOverlay('/meme2.png')}>Om oss</a>
+        <a class="menu-item" role="menuitem" href="#" on:click|preventDefault={() => openOverlay('/meme3.png')}>Ny student</a>
+        <a class="menu-item" role="menuitem" href="#" on:click|preventDefault={() => openOverlay('/meme4.png')}>Arrangementer</a>
+        <a class="menu-item" role="menuitem" href="#" on:click|preventDefault={() => openOverlay('/meme5.png')}>Paideia FC</a>
       </div>
     {/if}
   </div>

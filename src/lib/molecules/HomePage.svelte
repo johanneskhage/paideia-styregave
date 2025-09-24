@@ -2,9 +2,11 @@
   import Header from '../atoms/Header.svelte';
   import AboutPaideia from './AboutPaideia.svelte';
   import UpcomingEvent from './UpcomingEvent.svelte';
+
+  export let openOverlay: (img: string) => void;
 </script>
 
-<Header />
+<Header {openOverlay} />
 <main>
   <AboutPaideia />
   <UpcomingEvent />
