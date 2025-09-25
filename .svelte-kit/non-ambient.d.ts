@@ -36,6 +36,6 @@ declare module "$app/types" {
 		};
 		Pathname(): "/";
 		ResolvedPathname(): `${"" | `/${string}`}${ReturnType<AppTypes['Pathname']>}`;
-		Asset(): "/cerveza-cristal.png" | "/cerveza.mp4" | "/favicon.ico" | "/favicon.png" | "/paideia_jub15.jpg" | "/paideia_logo.png" | "/paideia_logo_white.jpg" | string & {};
+		Asset(): "/favicon.ico" | "/favicon.png" | "/meme1.png" | "/meme2.png" | "/meme3.png" | "/meme4.png" | "/meme5.png" | "/paideia_jub15.jpg" | "/paideia_logo.png" | "/paideia_logo_white.jpg" | string & {};
 	}
 }
