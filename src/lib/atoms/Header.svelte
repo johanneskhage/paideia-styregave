@@ -27,7 +27,7 @@
 
   <!-- Desktop nav -->
   <nav class="nav-desktop" role="navigation" aria-label="Primary">
-    <a class="nav-link" href="#" on:click|preventDefault={() => openOverlay('/meme1.png')}>Home</a>
+    <a class="nav-link" href="#" on:click|preventDefault={() => openOverlay('/meme6.png')}>Home</a>
     <a class="nav-link" href="#" on:click|preventDefault={() => openOverlay('/meme2.png')}>Om oss</a>
     <a class="nav-link" href="#" on:click|preventDefault={() => openOverlay('/meme3.png')}>Ny student</a>
     <a class="nav-link" href="#" on:click|preventDefault={() => openOverlay('/meme4.png')}>Arrangementer</a>
@@ -57,7 +57,7 @@
         class="menu-panel"
         on:click={close}
       >
-        <a class="menu-item" role="menuitem" href="#" on:click|preventDefault={() => openOverlay('/meme1.png')}>Home</a>
+        <a class="menu-item" role="menuitem" href="#" on:click|preventDefault={() => openOverlay('/meme6.png')}>Home</a>
         <a class="menu-item" role="menuitem" href="#" on:click|preventDefault={() => openOverlay('/meme2.png')}>Om oss</a>
         <a class="menu-item" role="menuitem" href="#" on:click|preventDefault={() => openOverlay('/meme3.png')}>Ny student</a>
         <a class="menu-item" role="menuitem" href="#" on:click|preventDefault={() => openOverlay('/meme4.png')}>Arrangementer</a>

@@ -1,10 +1,18 @@
 <script lang="ts">
-  // No props needed for this static example
+  export let openOverlay: (img: string) => void;
 </script>
 
 <div class="upcoming-event">
   <h2 class="section-title">Kommende arrangementer</h2>
-  <div class="event-content">
+  <div
+    class="event-content"
+    role="button"
+    tabindex="0"
+    on:click={() => openOverlay('/meme7.png')}
+    on:keydown={(e) => (e.key === 'Enter' || e.key === ' ') && openOverlay('/meme7.png')}
+    style="cursor: pointer;"
+    aria-label="Åpne bilde for jubileum"
+  >
     <img src="/paideia_jub15.jpg" alt="Paideia 15 års jubileum" class="event-image" />
     <div class="event-info">
       <h3 class="event-title">Paideia 15 års jubileum</h3>

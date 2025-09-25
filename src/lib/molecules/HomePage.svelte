@@ -9,7 +9,7 @@
 <Header {openOverlay} />
 <main>
   <AboutPaideia />
-  <UpcomingEvent />
+  <UpcomingEvent {openOverlay}/>
 </main>
 
 <style>

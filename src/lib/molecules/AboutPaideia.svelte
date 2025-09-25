@@ -8,18 +8,20 @@
     <h2>Om Paideia linjeforening</h2>
     <div class:clamp-text={!expanded}>
       <p>
-        Paideia er linjeforeningen for årsstudium, bachelor og master ved studiet Pedagogikk ved NTNU. Vi tilhører Institutt for Pedagogikk og Livslanglæring, og holder til på Dragvoll.
+        Paideia er linjeforeningen for pedagogikkstudenter ved NTNU, tilknyttet Institutt for Pedagogikk og Livslanglæring på Dragvoll.
       </p>
       <p>
-        Linjeforeningen arbeider med å arrangere sosiale og faglige sammenkomster og arrangementer for studenter som tilhører pedagogikkstudiet. Dette innebærer arrangementer som fagdag, eksamensquiz, ball, hyttetur og Pedpils! Gjennom linjeforeningen får man muligheter til å bli kjent med sine medstudenter, knytte livslange vennskap, og man får ta del i unike opplevelser. Vi er av studenter og for studenter.
+        Vi arrangerer sosiale og faglige aktiviteter som fagdag, eksamensquiz, ball, hyttetur og Pedpils. Her får du mulighet til å bli kjent med medstudenter og skape gode minner.
       </p>
       <p>
-        Linjeforeninger bygger på tradisjoner. Paideia er en nokså ny linjeforening, da den ble opprettet så sent som i 2010, men vi har tatt til oss flere av tradisjonene som regjerer for NTNUs eldre linjeforeninger. Dette inkluderer blant annet Fadderuke, Immatrikuleringsball og dåp.
+        Selv om Paideia er en ung linjeforening fra 2010, har vi tatt til oss mange tradisjoner fra NTNUs eldre linjeforeninger, som Fadderuke, Immatrikuleringsball og dåp.
       </p>
+      <img src="/meme1.png" alt="Paideia meme" class="about-meme" />
     </div>
     {#if !expanded}
       <button class="vis-mer-btn" on:click={() => expanded = true}>Vis mer</button>
     {/if}
+    
   </div>
 </div>
 
@@ -68,6 +70,14 @@
     line-height: 1.6;
   }
 
+  .about-meme {
+    display: block;
+    margin: 2rem auto 0 auto;
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(20,16,72,0.10);
+  }
+
   .clamp-text {
     display: -webkit-box;
     -webkit-line-clamp: 5;
@@ -105,6 +115,9 @@
     }
     .about-paideia {
       padding: 1.2rem 0.7rem;
+    }
+    .about-meme {
+      margin-top: 1.2rem;
     }
   }
 </style>
