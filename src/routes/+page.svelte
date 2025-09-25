@@ -1,13 +1,11 @@
 <script lang="ts">
   import { browser } from '$app/environment';
   import HomePage from '$lib/molecules/HomePage.svelte';
-  import VideoPlayer from '$lib/molecules/VideoPlayer.svelte';
   import ImageOverlay from '$lib/molecules/ImageOverlay.svelte';
 
   // favicon is served from static/favicon.ico via app.html template
 
   // State
-  let showVideo = false;
   let overlayImg: string | null = null;
 
   // Effects
@@ -22,9 +20,6 @@
     // do not change favicon at runtime — keep static favicon.ico
     // document.getElementById('pageFavicon').href = '/cerveza-cristal.png';
     document.title = 'Cerveza Cristalllll';
-
-    // Show video immediately
-    showVideo = true;
   }
 
   function openOverlay(img: string) {
@@ -44,11 +39,8 @@
   <!-- no runtime favicon override — app.html already includes the favicon template link -->
 </svelte:head>
 
-{#if !showVideo}
-  <HomePage on:interact={handleInteraction} {openOverlay} />
-{/if}
+<HomePage on:interact={handleInteraction} {openOverlay} />
 
-<VideoPlayer {showVideo} />
 <ImageOverlay imgSrc={overlayImg} visible={!!overlayImg} on:close={closeOverlay} />
 
 <style>
